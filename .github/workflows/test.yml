@@ -1,24 +1,31 @@
 name: Run Cypress Tests
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-      - run: npm install
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      - name: Start web server
-        run: npm run start & sleep 5
-        env:
-          CYPRESS_BASE_URL: http://localhost:3000
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run Cypress Tests
-        run: npx cypress run
+    - name: Start server
+      run: |
+        npx http-server public -p 3000 &
+        sleep 5
+
+    - name: Run Cypress
+      run: npx cypress run
