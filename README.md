@@ -55,7 +55,10 @@ cd Unit_Testing
 This project includes a .github/workflows/test.yml workflow that automatically runs Cypress tests on every push to main branch.
 
 📸 Screenshots
-![GitHub Actions Online Testing](https://github.com/user-attachments/assets/b307fd19-2af5-408a-84cf-643795feaf9d)
+## 📸 Cypress Test Başarı Ekranı
+
+![Cypress Test Success](./screenshots/GitHub_Actions_Online_Testing)
+
 
 👤 Author
 Muhammed Semih Külekçioğlu
