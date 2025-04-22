@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Account Page</title>
+  <style>
+    .indicator {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 18px;
+      width: 25px;
+    }
+    .valid {
+      color: green;
+    }
+    .invalid {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Create New Account Page</h2>
+  <form id="accountForm">
+    <label>First Name:</label>    <input type="text" id="firstName" maxlength="30">
+    <span class="indicator" id="firstNameCheck"></span><br><br>
+
+    <label>Last Name:</label>
+    <input type="text" id="lastName" maxlength="30">
+    <span class="indicator" id="lastNameCheck"></span><br><br>
+
+    <label>E-mail:</label>
+    <input type="email" id="email">
+    <span class="indicator" id="emailCheck"></span><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password">
+    <span class="indicator" id="passwordCheck"></span><br><br>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirmPassword">
+    <span class="indicator" id="confirmPasswordCheck"></span><br><br>
+
+    <label>Date of Birth (dd/mm/yyyy):</label>
+    <input type="text" id="dob" placeholder="dd/mm/yyyy">
+    <span class="indicator" id="dobCheck"></span><br><br>
+
+    <button type="submit">SUBMIT</button>
+  </form>
+
+  <div id="result" style="color: red; margin-top: 15px;"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const indicators = {
+        firstName: document.getElementById("firstNameCheck"),
+        lastName: document.getElementById("lastNameCheck"),
+        email: document.getElementById("emailCheck"),
+        password: document.getElementById("passwordCheck"),
+        confirmPassword: document.getElementById("confirmPasswordCheck"),
+        dob: document.getElementById("dobCheck"),
+      };
+
+      const fields = {
+        firstName: document.getElementById("firstName"),
+        lastName: document.getElementById("lastName"),
+        email: document.getElementById("email"),
+        password: document.getElementById("password"),
+        confirmPassword: document.getElementById("confirmPassword"),
+        dob: document.getElementById("dob"),
+      };
+
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+      const dobRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+
+      function validateLive(field) {
+        const value = fields[field].value.trim();
+        let valid = false;
+
+        switch (field) {
+          case "firstName":
+          case "lastName":
+            valid = value.length > 0 && value.length <= 30;
+            break;
+          case "email":
+            valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            break;
+          case "password":
+            valid = passwordRegex.test(value);
+            break;
+          case "confirmPassword":
+            valid = value === fields["password"].value && value !== "";
+            break;
+          case "dob":
+            valid = dobRegex.test(value);
+            break;
+        }
+
+        indicators[field].textContent = valid ? "✅" : "❌";
+        indicators[field].className = "indicator " + (valid ? "valid" : "invalid");
+      }
+
+      Object.keys(fields).forEach((key) => {
+        fields[key].addEventListener("input", () => validateLive(key));
+      });
+
+      document.getElementById("accountForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const errors = [];
+
+        const firstName = fields.firstName.value.trim();
+        const lastName = fields.lastName.value.trim();
+        const email = fields.email.value.trim();
+        const password = fields.password.value;
+        const confirmPassword = fields.confirmPassword.value;
+        const dob = fields.dob.value.trim();
+        const result = document.getElementById('result');
+
+        if (!firstName) errors.push("First name is required.");
+        if (!lastName) errors.push("Last name is required.");
+        if (!email) errors.push("E-mail is required.");
+        if (!password) errors.push("Password is required.");
+        if (!confirmPassword) errors.push("Confirm password is required.");
+        if (!dob) errors.push("Date of birth is required.");
+        if (password && !passwordRegex.test(password))
+          errors.push("Password must be at least 8 characters, include uppercase, lowercase and a number.");
+        if (password && confirmPassword && password !== confirmPassword)
+          errors.push("Passwords do not match.");
+        if (dob && !dobRegex.test(dob))
+          errors.push("Date of birth must be in dd/mm/yyyy format.");
+
+        if (errors.length > 0) {
+          result.style.color = 'red';
+          result.innerHTML = errors.map(err => `<p>${err}</p>`).join('');
+        } else {
+          result.style.color = 'green';
+          result.innerHTML = "<p>Account created successfully!</p>";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

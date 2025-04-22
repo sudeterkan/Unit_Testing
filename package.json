@@ -1,0 +1,14 @@
+{
+    "name": "create-account-project",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "npx http-server public -p 3000",
+      "cy:open": "cypress open",
+      "test": "cypress run"
+    },
+    "devDependencies": {
+      "cypress": "^12.17.0",
+      "http-server": "^14.1.1"
+    }
+  }
+  
