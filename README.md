@@ -26,7 +26,6 @@ This project is a form validation system developed as part of the **Software Ver
 🧪 Automated Testing with Cypress
 
 📁 Test File Location
-```bash
 cypress/e2e/form_spec.cy.js
 
 
