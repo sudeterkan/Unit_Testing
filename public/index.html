@@ -93,48 +93,48 @@
   </style>
 </head>
 <body>
-  <form id="accountForm">
-    <h2>Create New Account System</h2>
+<form id="accountForm">
+  <h2>Create New Account System</h2>
 
-    <label>First Name:</label>
-    <div class="input-wrapper">
-      <input type="text" id="firstName" maxlength="30">
-      <span id="firstNameCheck" class="indicator"></span>
-    </div>
+  <label>First Name:</label>
+  <div class="input-wrapper">
+    <input type="text" id="firstName" maxlength="30">
+    <span id="firstNameCheck" class="indicator"></span>
+  </div>
 
-    <label>Last Name:</label>
-    <div class="input-wrapper">
-      <input type="text" id="lastName" maxlength="30">
-      <span id="lastNameCheck" class="indicator"></span>
-    </div>
+  <label>Last Name:</label>
+  <div class="input-wrapper">
+    <input type="text" id="lastName" maxlength="30">
+    <span id="lastNameCheck" class="indicator"></span>
+  </div>
 
-    <label>E-mail:</label>
-    <div class="input-wrapper">
-      <input type="email" id="email">
-      <span id="emailCheck" class="indicator"></span>
-    </div>
+  <label>E-mail:</label>
+  <div class="input-wrapper">
+    <input type="email" id="email">
+    <span id="emailCheck" class="indicator"></span>
+  </div>
 
-    <label>Password:</label>
-    <div class="input-wrapper">
-      <input type="password" id="password">
-      <span id="passwordCheck" class="indicator"></span>
-    </div>
+  <label>Password:</label>
+  <div class="input-wrapper">
+    <input type="password" id="password">
+    <span id="passwordCheck" class="indicator"></span>
+  </div>
 
-    <label>Confirm Password:</label>
-    <div class="input-wrapper">
-      <input type="password" id="confirmPassword">
-      <span id="confirmPasswordCheck" class="indicator"></span>
-    </div>
+  <label>Confirm Password:</label>
+  <div class="input-wrapper">
+    <input type="password" id="confirmPassword">
+    <span id="confirmPasswordCheck" class="indicator"></span>
+  </div>
 
-    <label>Date of Birth (dd/mm/yyyy):</label>
-    <div class="input-wrapper">
-      <input type="text" id="dob" placeholder="dd/mm/yyyy">
-      <span id="dobCheck" class="indicator"></span>
-    </div>
+  <label>Date of Birth (dd/mm/yyyy):</label>
+  <div class="input-wrapper">
+    <input type="text" id="dob" placeholder="dd/mm/yyyy">
+    <span id="dobCheck" class="indicator"></span>
+  </div>
 
-    <button type="submit">SUBMIT</button>
-    <div id="result"></div>
-  </form>
+  <button type="submit">SUBMIT</button>
+  <div id="result"></div>
+</form>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -201,6 +201,7 @@
         const confirmPassword = fields.confirmPassword.value;
         const dob = fields.dob.value.trim();
         const result = document.getElementById('result');
+  
 
         if (!firstName) errors.push("First name is required.");
         if (!lastName) errors.push("Last name is required.");
