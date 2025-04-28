@@ -13,15 +13,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      heighy:100vh;
     }
 
     form {
       background-color: white;
-      padding: 30px 40px;
+      padding: 40px 40px;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      width: 350px;
+      width: 375px;
     }
 
     h2 {
@@ -120,7 +120,7 @@
       <span id="passwordCheck" class="indicator"></span>
     </div>
 
-    <label>Confirm Password:</label>
+    <label>Confirm Password: </label>
     <div class="input-wrapper">
       <input type="password" id="confirmPassword">
       <span id="confirmPasswordCheck" class="indicator"></span>
@@ -139,7 +139,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const indicators = {
-        firstName: document.getElementById("firstNameCheck"),
+        firstName: document.getElementById("firstNamecheck"),
         lastName: document.getElementById("lastNameCheck"),
         email: document.getElementById("emailCheck"),
         password: document.getElementById("passwordCheck"),
